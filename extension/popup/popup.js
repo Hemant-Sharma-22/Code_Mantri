@@ -9,6 +9,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     const pageURL = document.getElementById("page-url");
     const selectedCode = document.getElementById("selected-code");
 
+    const statusMessage = document.getElementById("status-message");
+
+function showStatus(message, type) {
+
+    statusMessage.textContent = message;
+
+    statusMessage.className = "";
+
+    statusMessage.classList.add(type);
+
+    setTimeout(() => {
+
+        statusMessage.className = "hidden";
+
+    }, 3000);
+}
+
     const [tab] = await chrome.tabs.query({
         active: true,
         currentWindow: true
@@ -25,22 +42,50 @@ analyzeButton.addEventListener("click", () => {
         },
         (response) => {
 
-            console.log(response);
+    if (chrome.runtime.lastError) {
 
-            pageTitle.textContent = response.title;
+        showStatus(
+            "Unable to connect to the current page.",
+            "error"
+        );
 
-            pageURL.textContent = response.url;
+        return;
+    }
 
-            if(response.selectedText){
+    if (!response) {
 
-                selectedCode.textContent = response.selectedText;
-            }
-            else{
+        showStatus(
+            "No response received.",
+            "error"
+        );
 
-                selectedCode.textContent =
-                "No text selected.";
-            }
-        }
+        return;
+    }
+
+    pageTitle.textContent = response.title;
+    pageURL.textContent = response.url;
+
+    if (response.selectedText) {
+
+        selectedCode.textContent = response.selectedText;
+
+        showStatus(
+            "Code extracted successfully.",
+            "success"
+        );
+
+    } else {
+
+        selectedCode.textContent =
+            "No text selected.";
+
+        showStatus(
+            "Please select some code first.",
+            "warning"
+        );
+    }
+
+}
     );
 });
 
