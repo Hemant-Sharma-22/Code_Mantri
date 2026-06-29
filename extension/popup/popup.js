@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     const pageURL = document.getElementById("page-url");
     const selectedCode = document.getElementById("selected-code");
-
+    const analysisResult = document.getElementById("analysis-result");
     const statusMessage = document.getElementById("status-message");
 
 function showStatus(message, type) {
@@ -68,7 +68,9 @@ analyzeButton.addEventListener("click", () => {
     if (response.selectedText) {
 
         selectedCode.textContent = response.selectedText;
-
+        
+        analysisResult.textContent =
+        response.analysis;
         showStatus(
             "Code extracted successfully.",
             "success"

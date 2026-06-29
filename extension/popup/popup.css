@@ -160,3 +160,43 @@ pre {
     background: #7f1d1d;
     color: #fecaca;
 }
+
+
+.button-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+.button-group button{
+
+    padding:12px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:white;
+
+    transition:0.2s;
+
+}
+
+.button-group button:hover{
+
+    background:#1d4ed8;
+
+}
+

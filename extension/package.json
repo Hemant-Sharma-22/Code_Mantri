@@ -1,0 +1,24 @@
+{
+  "name": "extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.7.0",
+    "@types/chrome": "^0.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.62.0",
+    "@typescript-eslint/parser": "^8.62.0",
+    "chrome-types": "^0.1.431",
+    "eslint": "^10.6.0",
+    "prettier": "^3.9.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.0",
+    "vite-tsconfig-paths": "^6.1.1"
+  }
+}
