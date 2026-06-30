@@ -1,9 +1,16 @@
 from pydantic import BaseModel
 
-
 class AnalyzeRequest(BaseModel):
+
     language: str
+
     code: str
+
+    title: str = ""
+
+    url: str = ""
+
+    page_context: str = ""
 
 
 class AnalyzeResponse(BaseModel):

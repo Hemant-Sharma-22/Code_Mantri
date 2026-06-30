@@ -10,9 +10,9 @@ router = APIRouter()
 def analyze(request: AnalyzeRequest):
 
     analysis = explain_code(
-        request.code,
-        request.language
-    )
+    code=request.code,
+    language=request.language
+)
 
     return {
         "title": "AI Analysis",
