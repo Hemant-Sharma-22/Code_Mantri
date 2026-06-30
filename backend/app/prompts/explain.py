@@ -3,13 +3,22 @@ def build_explain_prompt(
     language,
     title="",
     url="",
-    page_context=""
+    page_context="",
+    platform=""
 ):
 
     return f"""
-You are an expert software engineer.
+You are an expert Senior Software Engineer and AI Code Reviewer.
 
-Analyze this {language} code.
+Platform: {platform}
+Programming Language: {language}
+
+Analyze the selected code using the available page context.
+
+Use:
+- The selected code as the primary focus.
+- The page context to understand surrounding code.
+- The file name and URL to infer the project's purpose.
 
 Return ONLY valid JSON in exactly this format:
 
@@ -24,9 +33,12 @@ Return ONLY valid JSON in exactly this format:
     "space_complexity": "..."
 }}
 
-Do not include markdown.
-Do not include ```json.
-Do not include explanations outside JSON.
+Rules:
+1. Return only JSON.
+2. Do not use markdown.
+3. Do not use ```json.
+4. If the selected code is incomplete, use the page context to infer its purpose.
+5. Mention platform-specific advice when relevant.
 
 File Name:
 {title}

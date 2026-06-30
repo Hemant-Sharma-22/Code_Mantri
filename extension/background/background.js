@@ -1,3 +1,42 @@
+function detectLanguage(url, title) {
+
+    const text = (url + " " + title).toLowerCase();
+
+    if (text.includes(".java")) return "java";
+    if (text.includes(".py")) return "python";
+    if (text.includes(".cpp")) return "cpp";
+    if (text.includes(".c")) return "c";
+    if (text.includes(".js")) return "javascript";
+    if (text.includes(".ts")) return "typescript";
+    if (text.includes(".cs")) return "csharp";
+    if (text.includes(".go")) return "go";
+    if (text.includes(".php")) return "php";
+    if (text.includes(".rb")) return "ruby";
+    if (text.includes(".kt")) return "kotlin";
+
+    return "text";
+}
+
+function detectPlatform(url) {
+
+    url = url.toLowerCase();
+
+    if (url.includes("github.com"))
+        return "github";
+
+    if (url.includes("leetcode.com"))
+        return "leetcode";
+
+    if (url.includes("geeksforgeeks.org"))
+        return "geeksforgeeks";
+
+    if (url.includes("codechef.com"))
+        return "codechef";
+
+    return "unknown";
+}
+
+
 chrome.runtime.onInstalled.addListener(() => {
     console.log("AI Code Mentor Installed");
 });
@@ -47,7 +86,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                                 },
                                body: JSON.stringify({
 
-    language: "java",
+    language: detectLanguage(
+        response.url,
+        response.title
+    ),
+
+    platform: detectPlatform(
+        response.url
+    ),
 
     code: response.selectedText,
 
@@ -57,7 +103,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     page_context: response.pageText
 
-}) 
+})
                             }
                         );
 

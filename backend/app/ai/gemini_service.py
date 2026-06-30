@@ -4,7 +4,7 @@ import json
 from dotenv import load_dotenv
 from google import genai
 
-from app.prompts.explain import build_explain_prompt
+from app.prompts.router import build_prompt
 
 load_dotenv()
 
@@ -43,15 +43,17 @@ def explain_code(
     language,
     title="",
     url="",
-    page_context=""
+    page_context="",
+    platform=""
 ):
 
-    prompt = build_explain_prompt(
-    code=code,
-    language=language,
-    title=title,
-    url=url,
-    page_context=page_context
-)
+    prompt = build_prompt(
+        platform=platform,
+        code=code,
+        language=language,
+        title=title,
+        url=url,
+        page_context=page_context
+    )
 
     return generate(prompt)

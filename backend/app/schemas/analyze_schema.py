@@ -4,6 +4,8 @@ class AnalyzeRequest(BaseModel):
 
     language: str
 
+    platform: str = ""
+
     code: str
 
     title: str = ""
@@ -11,7 +13,6 @@ class AnalyzeRequest(BaseModel):
     url: str = ""
 
     page_context: str = ""
-
 
 class AnalyzeResponse(BaseModel):
     success: bool

@@ -19,7 +19,9 @@ def analyze(request: AnalyzeRequest):
 
     url=request.url,
 
-    page_context=request.page_context
+    page_context=request.page_context,
+
+    platform=request.platform
 
 )
 
