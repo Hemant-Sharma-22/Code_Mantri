@@ -10,8 +10,17 @@ router = APIRouter()
 def analyze(request: AnalyzeRequest):
 
     analysis = explain_code(
+
     code=request.code,
-    language=request.language
+
+    language=request.language,
+
+    title=request.title,
+
+    url=request.url,
+
+    page_context=request.page_context
+
 )
 
     return {

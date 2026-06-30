@@ -1,4 +1,10 @@
-def build_explain_prompt(code: str, language: str):
+def build_explain_prompt(
+    code,
+    language,
+    title="",
+    url="",
+    page_context=""
+):
 
     return f"""
 You are an expert software engineer.
@@ -22,6 +28,15 @@ Do not include markdown.
 Do not include ```json.
 Do not include explanations outside JSON.
 
-Code:
+File Name:
+{title}
+
+Page URL:
+{url}
+
+Page Context:
+{page_context}
+
+Selected Code:
 {code}
 """

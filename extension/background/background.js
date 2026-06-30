@@ -45,10 +45,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                                 headers: {
                                     "Content-Type": "application/json"
                                 },
-                                body: JSON.stringify({
-                                    language: "java",
-                                    code: response.selectedText
-                                })
+                               body: JSON.stringify({
+
+    language: "java",
+
+    code: response.selectedText,
+
+    title: response.title,
+
+    url: response.url,
+
+    page_context: response.pageText
+
+}) 
                             }
                         );
 

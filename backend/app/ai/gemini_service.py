@@ -38,11 +38,20 @@ def generate(prompt):
         }
 
 
-def explain_code(code, language):
+def explain_code(
+    code,
+    language,
+    title="",
+    url="",
+    page_context=""
+):
 
     prompt = build_explain_prompt(
-        code,
-        language
-    )
+    code=code,
+    language=language,
+    title=title,
+    url=url,
+    page_context=page_context
+)
 
     return generate(prompt)
