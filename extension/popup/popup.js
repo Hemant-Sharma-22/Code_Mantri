@@ -67,16 +67,39 @@ analyzeButton.addEventListener("click", () => {
 
     if (response.selectedText) {
 
-        selectedCode.textContent = response.selectedText;
-        
-        analysisResult.textContent =
-        response.analysis;
-        showStatus(
-            "Code extracted successfully.",
-            "success"
-        );
+    selectedCode.textContent = response.selectedText;
+
+    if (response.analysis.error) {
+
+        analysisResult.textContent = response.analysis.error;
 
     } else {
+
+        analysisResult.innerHTML = `
+            <h3>📝 Summary</h3>
+            <p>${response.analysis.summary}</p>
+
+            <h3>💡 Suggestions</h3>
+            <ul>
+                ${response.analysis.suggestions
+                    .map(item => `<li>${item}</li>`)
+                    .join("")}
+            </ul>
+
+            <h3>⚡ Complexity</h3>
+
+            <p><strong>Time:</strong> ${response.analysis.time_complexity}</p>
+
+            <p><strong>Space:</strong> ${response.analysis.space_complexity}</p>
+        `;
+    }
+
+    showStatus(
+        "AI analysis completed.",
+        "success"
+    );
+
+} else {
 
         selectedCode.textContent =
             "No text selected.";

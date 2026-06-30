@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 
 from app.schemas.analyze_schema import AnalyzeRequest
-
 from app.ai.gemini_service import explain_code
 
 router = APIRouter()
@@ -16,9 +15,6 @@ def analyze(request: AnalyzeRequest):
     )
 
     return {
-
-        "success": True,
-
+        "title": "AI Analysis",
         "analysis": analysis
-
     }

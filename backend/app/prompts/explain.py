@@ -1,23 +1,27 @@
 def build_explain_prompt(code: str, language: str):
 
     return f"""
-You are a Senior Software Engineer.
+You are an expert software engineer.
 
-Analyze the following {language} code.
+Analyze this {language} code.
 
-Return your answer in Markdown format.
+Return ONLY valid JSON in exactly this format:
 
-## Summary
-Explain what the code does.
+{{
+    "summary": "...",
+    "suggestions": [
+        "...",
+        "...",
+        "..."
+    ],
+    "time_complexity": "...",
+    "space_complexity": "..."
+}}
 
-## Suggestions
-Give 3-5 improvements.
-
-## Time Complexity
-
-## Space Complexity
+Do not include markdown.
+Do not include ```json.
+Do not include explanations outside JSON.
 
 Code:
-
 {code}
 """
