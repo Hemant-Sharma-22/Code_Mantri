@@ -1,21 +1,34 @@
-def build_optimize_prompt(code: str, language: str):
+from fastapi import APIRouter
 
-    return f"""
-You are a Performance Engineer.
+from app.schemas.analyze_schema import AnalyzeRequest
+from app.ai.gemini_service import optimize_code
 
-Optimize this {language} code.
+router = APIRouter()
 
-Return:
 
-## Optimized Code
+@router.post("/optimize")
+def optimize(request: AnalyzeRequest):
 
-## Improvements
+    analysis = optimize_code(
 
-## Time Complexity
+        code=request.code,
 
-## Space Complexity
+        language=request.language,
 
-Code:
+        title=request.title,
 
-{code}
-"""
+        url=request.url,
+
+        page_context=request.page_context,
+
+        platform=request.platform
+
+    )
+
+    return {
+
+        "title": "Code Optimization",
+
+        "analysis": analysis
+
+    }

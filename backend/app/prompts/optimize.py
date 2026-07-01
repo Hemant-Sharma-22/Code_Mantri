@@ -1,19 +1,55 @@
-def build_optimize_prompt(code: str, language: str):
+def build_optimize_prompt(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
 
     return f"""
-Optimize this {language} code.
+You are an expert software performance engineer.
 
-Return:
+Analyze this {language} code.
 
-## Optimized Code
+Your job is to improve:
 
-## Improvements
+- Performance
+- Readability
+- Memory usage
+- Best Practices
 
-## Time Complexity
+Return ONLY valid JSON.
 
-## Space Complexity
+Return exactly this structure:
 
-Code:
+{{
+    "summary":"...",
+
+    "optimizations":[
+        "...",
+        "...",
+        "..."
+    ],
+
+    "optimized_code":"..."
+}}
+
+Do not return markdown.
+
+Platform:
+{platform}
+
+File:
+{title}
+
+URL:
+{url}
+
+Context:
+{page_context}
+
+Selected Code:
 
 {code}
 """

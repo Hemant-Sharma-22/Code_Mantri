@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from app.api.analyze import router as analyze_router
+from app.api.bugs import router as bugs_router
+from app.api.optimize import router as optimize_router
 
 app = FastAPI(
     title="AI Code Mentor API",
@@ -7,7 +9,8 @@ app = FastAPI(
 )
 
 app.include_router(analyze_router)
-
+app.include_router(bugs_router)
+app.include_router(optimize_router)
 
 @app.get("/")
 def home():

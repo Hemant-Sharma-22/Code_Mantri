@@ -4,6 +4,12 @@
   "description": "An AI-powered coding assistant for developers.",
   "version": "1.0.0",
 
+  "side_panel": {
+
+        "default_path": "sidebar/sidebar.html"
+
+    },
+
   "action": {
     "default_popup": "popup/popup.html",
     "default_title": "AI Code Mentor"
@@ -23,11 +29,12 @@
         ]
     }
 ],
+
   "permissions": [
     "activeTab",
-    "storage",
-    "scripting"
-  ],
+    "scripting",
+    "sidePanel"
+],
 
   
 

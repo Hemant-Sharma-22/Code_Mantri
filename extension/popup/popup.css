@@ -194,9 +194,50 @@ pre {
 
 }
 
+
+
+
+
 .button-group button:hover{
 
     background:#1d4ed8;
 
 }
 
+.action-buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+.action-buttons button {
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+
+}
+
+.action-buttons button:hover {
+
+    background: #1d4ed8;
+
+}

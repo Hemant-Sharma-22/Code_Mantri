@@ -1,19 +1,64 @@
-def build_bug_prompt(code: str, language: str):
+def build_bug_prompt(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
 
     return f"""
-You are a Senior Software Engineer.
+You are an expert Senior Software Engineer and Code Reviewer.
 
-Find all bugs in this {language} code.
+Platform:
+{platform}
 
-Return:
+Programming Language:
+{language}
 
-## Bugs
+Your task is to find bugs in the selected code.
 
-## Severity
+Use:
+- Selected code as the primary source.
+- Page context if required.
+- File name and URL to understand the project.
 
-## Fix
+Return ONLY valid JSON.
 
-Code:
+Return exactly this structure:
+
+{{
+    "bugs": [
+        {{
+            "title": "...",
+            "severity": "...",
+            "description": "...",
+            "fix": "..."
+        }}
+    ]
+}}
+
+Rules:
+
+1. Return only JSON.
+2. No markdown.
+3. No explanations.
+4. If there are no bugs, return:
+
+{{
+    "bugs":[]
+}}
+
+File Name:
+{title}
+
+URL:
+{url}
+
+Page Context:
+{page_context}
+
+Selected Code:
 
 {code}
 """

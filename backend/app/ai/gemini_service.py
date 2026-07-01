@@ -3,7 +3,8 @@ import json
 
 from dotenv import load_dotenv
 from google import genai
-
+from app.prompts.bugs import build_bug_prompt
+from app.prompts.optimize import build_optimize_prompt
 from app.prompts.router import build_prompt
 
 load_dotenv()
@@ -54,6 +55,46 @@ def explain_code(
         title=title,
         url=url,
         page_context=page_context
+    )
+
+    return generate(prompt)
+
+def detect_bugs(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
+
+    prompt = build_bug_prompt(
+        code=code,
+        language=language,
+        title=title,
+        url=url,
+        page_context=page_context,
+        platform=platform
+    )
+
+    return generate(prompt)
+
+def optimize_code(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
+
+    prompt = build_optimize_prompt(
+        code=code,
+        language=language,
+        title=title,
+        url=url,
+        page_context=page_context,
+        platform=platform
     )
 
     return generate(prompt)

@@ -36,6 +36,31 @@ function detectPlatform(url) {
     return "unknown";
 }
 
+async function callBackend(endpoint, payload) {
+
+    const response = await fetch(
+
+        `http://127.0.0.1:8000/${endpoint}`,
+
+        {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type": "application/json"
+
+            },
+
+            body: JSON.stringify(payload)
+
+        }
+
+    );
+
+    return await response.json();
+
+}
 
 chrome.runtime.onInstalled.addListener(() => {
     console.log("AI Code Mentor Installed");
@@ -43,9 +68,13 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
-    if (message.action !== "analyze") {
-        return;
-    }
+if (
+    message.action !== "analyze" &&
+    message.action !== "bugs" &&
+    message.action !== "optimize"
+) {
+    return;
+}
 
     chrome.tabs.query(
         {
@@ -77,14 +106,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
                     try {
 
-                        const backendResponse = await fetch(
-                            "http://127.0.0.1:8000/analyze",
-                            {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-                               body: JSON.stringify({
+                        const payload = {
 
     language: detectLanguage(
         response.url,
@@ -103,12 +125,29 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     page_context: response.pageText
 
-})
-                            }
-                        );
+};
 
-                       const aiResult = await backendResponse.json();
+let endpoint = "analyze";
 
+if (message.action === "bugs") {
+
+    endpoint = "bugs";
+
+}
+
+else if (message.action === "optimize") {
+
+    endpoint = "optimize";
+
+}
+
+const aiResult = await callBackend(
+
+    endpoint,
+
+    payload
+
+);
 console.log("AI RESULT:", aiResult);
 
 sendResponse({

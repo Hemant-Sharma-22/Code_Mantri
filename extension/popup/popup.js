@@ -1,8 +1,67 @@
 document.addEventListener("DOMContentLoaded", async () => {
-
+    
     console.log("AI Code Mentor Started");
+    
+    const explainButton =
+    document.getElementById("explain-btn");
+    
+    const optimizeButton =
+    document.getElementById("optimize-btn");
 
-    const analyzeButton = document.getElementById("analyze-btn");
+const bugsButton =
+document.getElementById("bugs-btn");
+
+optimizeButton.addEventListener("click", () => {
+
+    chrome.runtime.sendMessage(
+        {
+            action: "optimize"
+        },
+        (response) => {
+
+            if (chrome.runtime.lastError) {
+
+                showStatus(
+                    "Unable to connect.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (!response) {
+
+                showStatus(
+                    "No response.",
+                    "error"
+                );
+
+                return;
+            }
+
+            pageTitle.textContent = response.title;
+            pageURL.textContent = response.url;
+            selectedCode.textContent = response.selectedText;
+
+            analysisResult.textContent =
+                JSON.stringify(response.analysis, null, 2);
+
+            showStatus(
+                "Optimization completed.",
+                "success"
+            );
+
+        }
+    );
+
+});
+
+
+const commentsButton =
+document.getElementById("comments-btn");
+
+const translateButton =
+document.getElementById("translate-btn");
     
     const pageTitle = document.getElementById("page-title");
     
@@ -10,6 +69,70 @@ document.addEventListener("DOMContentLoaded", async () => {
     const selectedCode = document.getElementById("selected-code");
     const analysisResult = document.getElementById("analysis-result");
     const statusMessage = document.getElementById("status-message");
+
+
+    bugsButton.addEventListener("click", () => {
+
+    chrome.runtime.sendMessage(
+
+        {
+
+            action: "bugs"
+
+        },
+
+        (response) => {
+
+            if (chrome.runtime.lastError) {
+
+                showStatus(
+
+                    "Unable to connect.",
+
+                    "error"
+
+                );
+
+                return;
+
+            }
+
+            if (!response) {
+
+                showStatus(
+
+                    "No response.",
+
+                    "error"
+
+                );
+
+                return;
+
+            }
+
+            pageTitle.textContent = response.title;
+
+            pageURL.textContent = response.url;
+
+            selectedCode.textContent = response.selectedText;
+
+            analysisResult.textContent =
+                JSON.stringify(response.analysis, null, 2);
+
+            showStatus(
+
+                "Bug detection completed.",
+
+                "success"
+
+            );
+
+        }
+
+    );
+
+});
 
 function showStatus(message, type) {
 
@@ -34,7 +157,7 @@ function showStatus(message, type) {
     pageTitle.textContent = tab.title;
     pageURL.textContent = tab.url;
 
-analyzeButton.addEventListener("click", () => {
+explainButton.addEventListener("click", () => {
 
     chrome.runtime.sendMessage(
         {
