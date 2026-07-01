@@ -71,7 +71,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 if (
     message.action !== "analyze" &&
     message.action !== "bugs" &&
-    message.action !== "optimize"
+    message.action !== "optimize" &&
+    message.action !== "comments" &&
+    message.action !== "translate" &&
+    message.action !== "complexity" &&
+    message.action !== "tests"
 ) {
     return;
 }
@@ -138,6 +142,28 @@ if (message.action === "bugs") {
 else if (message.action === "optimize") {
 
     endpoint = "optimize";
+
+}
+
+else if (message.action === "comments") {
+
+    endpoint = "comments";
+
+}
+
+else if (message.action === "translate") {
+
+    endpoint = "translate";
+
+}
+else if (message.action === "complexity") {
+
+    endpoint = "complexity";
+
+}
+else if (message.action === "tests") {
+
+    endpoint = "tests";
 
 }
 

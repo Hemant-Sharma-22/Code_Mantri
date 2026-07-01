@@ -1,11 +1,50 @@
-def build_translate_prompt(code: str, source: str, target: str):
+def build_translate_prompt(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
 
     return f"""
-Convert this {source} code into {target}.
+You are an expert software engineer.
 
-Only return valid {target} code.
+Translate the following {language} code into another programming language.
 
-Code:
+Requirements:
+
+- Preserve the same logic.
+- Follow best coding practices.
+- Keep the translated code readable.
+- Do not change the algorithm.
+
+Return ONLY valid JSON.
+
+Return exactly this format:
+
+{{
+    "summary": "...",
+    "target_language": "...",
+    "translated_code": "..."
+}}
+
+Do not return markdown.
+Do not use ```.
+
+Platform:
+{platform}
+
+File:
+{title}
+
+URL:
+{url}
+
+Context:
+{page_context}
+
+Selected Code:
 
 {code}
 """

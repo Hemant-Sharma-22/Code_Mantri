@@ -1,4 +1,4 @@
-def build_comments_prompt(
+def build_tests_prompt(
     code,
     language,
     title="",
@@ -8,17 +8,17 @@ def build_comments_prompt(
 ):
 
     return f"""
-You are an expert Senior Software Engineer.
+You are an expert Software Test Engineer.
 
-Your task is to generate professional comments for the given {language} code.
+Generate high-quality unit tests for the given {language} code.
 
 Requirements:
 
-- Add meaningful comments.
-- Explain important logic.
-- Do not change the functionality.
-- Keep comments concise.
-- Follow industry best practices.
+- Cover normal cases.
+- Cover edge cases.
+- Cover invalid inputs.
+- Follow best practices.
+- Use the standard testing framework for the language.
 
 Return ONLY valid JSON.
 
@@ -27,7 +27,9 @@ Return exactly this format:
 {{
     "summary":"...",
 
-    "commented_code":"..."
+    "testing_framework":"...",
+
+    "test_code":"..."
 }}
 
 Do not return markdown.

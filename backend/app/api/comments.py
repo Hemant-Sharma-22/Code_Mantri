@@ -1,11 +1,34 @@
-def build_comment_prompt(code: str, language: str):
+from fastapi import APIRouter
 
-    return f"""
-Add professional comments to this {language} code.
+from app.schemas.analyze_schema import AnalyzeRequest
+from app.ai.gemini_service import generate_comments
 
-Return only the commented code.
+router = APIRouter()
 
-Code:
 
-{code}
-"""
+@router.post("/comments")
+def comments(request: AnalyzeRequest):
+
+    analysis = generate_comments(
+
+        code=request.code,
+
+        language=request.language,
+
+        title=request.title,
+
+        url=request.url,
+
+        page_context=request.page_context,
+
+        platform=request.platform
+
+    )
+
+    return {
+
+        "title": "Code Comments",
+
+        "analysis": analysis
+
+    }

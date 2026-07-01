@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     const explainButton =
     document.getElementById("explain-btn");
-    
+
     const optimizeButton =
     document.getElementById("optimize-btn");
 
@@ -60,8 +60,203 @@ optimizeButton.addEventListener("click", () => {
 const commentsButton =
 document.getElementById("comments-btn");
 
+commentsButton.addEventListener("click", () => {
+
+    chrome.runtime.sendMessage(
+        {
+            action: "comments"
+        },
+        (response) => {
+
+            if (chrome.runtime.lastError) {
+
+                showStatus(
+                    "Unable to connect.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (!response) {
+
+                showStatus(
+                    "No response.",
+                    "error"
+                );
+
+                return;
+            }
+
+            pageTitle.textContent = response.title;
+            pageURL.textContent = response.url;
+            selectedCode.textContent = response.selectedText;
+
+            analysisResult.textContent =
+                JSON.stringify(response.analysis, null, 2);
+
+            showStatus(
+                "Comments generated successfully.",
+                "success"
+            );
+
+        }
+    );
+
+});
+
 const translateButton =
 document.getElementById("translate-btn");
+
+translateButton.addEventListener("click", () => {
+
+    chrome.runtime.sendMessage(
+        {
+            action: "translate"
+        },
+        (response) => {
+
+            if (chrome.runtime.lastError) {
+
+                showStatus(
+                    "Unable to connect.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (!response) {
+
+                showStatus(
+                    "No response.",
+                    "error"
+                );
+
+                return;
+            }
+
+            pageTitle.textContent = response.title;
+            pageURL.textContent = response.url;
+            selectedCode.textContent = response.selectedText;
+
+            analysisResult.textContent =
+                JSON.stringify(response.analysis, null, 2);
+
+            showStatus(
+                "Translation completed.",
+                "success"
+            );
+
+        }
+    );
+
+});
+
+const complexityButton =
+document.getElementById("complexity-btn");
+
+complexityButton.addEventListener("click", () => {
+
+    chrome.runtime.sendMessage(
+        {
+            action: "complexity"
+        },
+        (response) => {
+
+            if (chrome.runtime.lastError) {
+
+                showStatus(
+                    "Unable to connect.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if (!response) {
+
+                showStatus(
+                    "No response.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            pageTitle.textContent = response.title;
+            pageURL.textContent = response.url;
+            selectedCode.textContent = response.selectedText;
+
+            analysisResult.textContent =
+                JSON.stringify(response.analysis, null, 2);
+
+            showStatus(
+                "Complexity analysis completed.",
+                "success"
+            );
+
+        }
+
+    );
+
+});
+
+
+const testsButton =
+document.getElementById("tests-btn");
+
+testsButton.addEventListener("click", () => {
+
+    chrome.runtime.sendMessage(
+        {
+            action: "tests"
+        },
+        (response) => {
+
+            if (chrome.runtime.lastError) {
+
+                showStatus(
+                    "Unable to connect.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if (!response) {
+
+                showStatus(
+                    "No response.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            pageTitle.textContent = response.title;
+            pageURL.textContent = response.url;
+            selectedCode.textContent = response.selectedText;
+
+            analysisResult.textContent =
+                JSON.stringify(response.analysis, null, 2);
+
+            showStatus(
+                "Unit tests generated.",
+                "success"
+            );
+
+        }
+
+    );
+
+});
+
+
     
     const pageTitle = document.getElementById("page-title");
     

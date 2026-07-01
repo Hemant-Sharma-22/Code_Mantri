@@ -1,15 +1,15 @@
 from fastapi import APIRouter
 
 from app.schemas.analyze_schema import AnalyzeRequest
-from app.ai.gemini_service import translate_code
+from app.ai.gemini_service import analyze_complexity
 
 router = APIRouter()
 
 
-@router.post("/translate")
-def translate(request: AnalyzeRequest):
+@router.post("/complexity")
+def complexity(request: AnalyzeRequest):
 
-    analysis = translate_code(
+    analysis = analyze_complexity(
 
         code=request.code,
 
@@ -27,7 +27,7 @@ def translate(request: AnalyzeRequest):
 
     return {
 
-        "title": "Code Translation",
+        "title": "Complexity Analysis",
 
         "analysis": analysis
 

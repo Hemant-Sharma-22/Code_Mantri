@@ -3,9 +3,13 @@ import json
 
 from dotenv import load_dotenv
 from google import genai
+from app.prompts.complexity import build_complexity_prompt
+from app.prompts.translate import build_translate_prompt
+from app.prompts.comments import build_comments_prompt
 from app.prompts.bugs import build_bug_prompt
 from app.prompts.optimize import build_optimize_prompt
 from app.prompts.router import build_prompt
+from app.prompts.tests import build_tests_prompt
 
 load_dotenv()
 
@@ -89,6 +93,86 @@ def optimize_code(
 ):
 
     prompt = build_optimize_prompt(
+        code=code,
+        language=language,
+        title=title,
+        url=url,
+        page_context=page_context,
+        platform=platform
+    )
+
+    return generate(prompt)
+
+def generate_comments(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
+
+    prompt = build_comments_prompt(
+        code=code,
+        language=language,
+        title=title,
+        url=url,
+        page_context=page_context,
+        platform=platform
+    )
+
+    return generate(prompt)
+
+def translate_code(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
+
+    prompt = build_translate_prompt(
+        code=code,
+        language=language,
+        title=title,
+        url=url,
+        page_context=page_context,
+        platform=platform
+    )
+
+    return generate(prompt)
+
+def analyze_complexity(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
+
+    prompt = build_complexity_prompt(
+        code=code,
+        language=language,
+        title=title,
+        url=url,
+        page_context=page_context,
+        platform=platform
+    )
+
+    return generate(prompt)
+
+def generate_tests(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
+
+    prompt = build_tests_prompt(
         code=code,
         language=language,
         title=title,
