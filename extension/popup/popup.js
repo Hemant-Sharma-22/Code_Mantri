@@ -71,7 +71,8 @@ analyzeButton.addEventListener("click", () => {
 
     if (response.analysis.error) {
 
-        analysisResult.textContent = response.analysis.error;
+        analysisResult.textContent =
+            JSON.stringify(response.analysis.error, null, 2);
 
     } else {
 

@@ -9,23 +9,45 @@ def build_github_prompt(
     return f"""
 You are a Senior Software Engineer.
 
-The code comes from GitHub.
+The following code comes from GitHub.
 
 Focus on:
 
 - Code quality
 - Readability
+- Best practices
 - Design
-- Best Practices
-- Time Complexity
+- Time complexity
+- Space complexity
 
-Return valid JSON.
+Return ONLY valid JSON in exactly this format:
 
-Selected Code:
+{{
+    "summary": "...",
+    "suggestions": [
+        "...",
+        "...",
+        "..."
+    ],
+    "time_complexity": "...",
+    "space_complexity": "..."
+}}
 
-{code}
+Rules:
+1. Return ONLY JSON.
+2. Do NOT use markdown.
+3. Do NOT use ```json.
+4. Do NOT wrap the JSON inside another object like "code_review".
+
+File Name:
+{title}
+
+Page URL:
+{url}
 
 Page Context:
-
 {page_context}
+
+Selected Code:
+{code}
 """

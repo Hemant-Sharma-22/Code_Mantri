@@ -107,17 +107,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                             }
                         );
 
-                        const aiResult = await backendResponse.json();
+                       const aiResult = await backendResponse.json();
 
-                        sendResponse({
+console.log("AI RESULT:", aiResult);
 
-                            title: response.title,
+sendResponse({
 
-                            url: response.url,
+    title: response.title,
 
-                            selectedText: response.selectedText,
+    url: response.url,
 
-                            analysis: aiResult.analysis
+    selectedText: response.selectedText,
+
+    analysis: aiResult.analysis
 
                         });
 
