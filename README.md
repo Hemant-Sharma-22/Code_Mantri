@@ -9,73 +9,64 @@
 
 ---
 
-# 📌 Features
+## 🚀 Features
 
-### 🧠 AI Code Analysis
-- ✅ Explain Code
-- ✅ Detect Bugs
-- ✅ Optimize Code
-- ✅ Generate Comments
-- ✅ Translate Code
-- ✅ Time & Space Complexity Analysis
-- ✅ Unit Test Generation
-
----
-
-# 🌐 Supported Platforms
-
-- GitHub
-- LeetCode
-- CodeChef
-- Generic Websites (Extensible)
+- 🧠 Explain Code
+- 🐞 Find Bugs
+- ⚡ Optimize Code
+- 💬 Generate Comments
+- 🌍 Translate Code
+- 📊 Time Complexity Analysis
+- 💾 Space Complexity Analysis
+- 🔍 Platform Detection
+- 💻 Language Detection
+- 📄 Page Context Analysis
 
 ---
 
-# ⚙️ Tech Stack
+# 🏗 Architecture
+
+```
+Chrome Extension
+        │
+        ▼
+Content Script
+        │
+        ▼
+Background Script
+        │
+        ▼
+FastAPI Backend
+        │
+        ▼
+Prompt Engine
+        │
+        ▼
+Gemini API
+        │
+        ▼
+Structured JSON
+        │
+        ▼
+Popup UI
+```
+
+---
+
+# 🛠 Tech Stack
 
 ## Frontend
+
 - HTML
 - CSS
 - JavaScript
 - Chrome Extension (Manifest V3)
 
 ## Backend
+
 - Python
 - FastAPI
 - Google Gemini API
-
----
-
-# 🏗️ Project Architecture
-
-```
-Chrome Extension
-│
-├── Popup UI
-├── Background Script
-├── Content Script
-│
-▼
-
-FastAPI Backend
-│
-├── API Routes
-├── AI Service
-├── Prompt Engine
-├── Schemas
-│
-▼
-
-Gemini API
-│
-▼
-
-Structured JSON Response
-│
-▼
-
-Chrome Extension UI
-```
 
 ---
 
@@ -86,23 +77,23 @@ AI-Code-Mentor
 │
 ├── backend
 │   ├── app
-│   │   ├── api
 │   │   ├── ai
+│   │   ├── api
 │   │   ├── prompts
 │   │   ├── schemas
 │   │   ├── services
 │   │   ├── utils
 │   │   └── main.py
 │   │
-│   └── requirements.txt
+│   ├── requirements.txt
+│   └── .env
 │
 ├── extension
 │   ├── popup
 │   ├── background
 │   ├── content
-│   ├── settings
-│   ├── styles
 │   ├── assets
+│   ├── styles
 │   └── manifest.json
 │
 └── README.md
@@ -110,10 +101,42 @@ AI-Code-Mentor
 
 ---
 
+# 📸 Screenshots
+
+## 🖥 Extension Interface
+
+![Extension UI](screenshots/extension-home.png)
+
+---
+
+## 📄 Code Selection
+
+![Code Selection](screenshots/code-selection.png)
+
+---
+
+## ⚙ Backend API
+
+![Swagger](screenshots/swagger-api.png)
+
+---
+
+## 🚀 Backend Running
+
+![Backend](screenshots/backend-running.png)
+
+---
+
+## 🤖 AI JSON Response
+
+![AI Response](screenshots/ai-response.png)
+
+---
+
 # 🚀 Current Progress
 
 | Phase | Status |
-|--------|--------|
+|---------|---------|
 | Project Foundation | ✅ |
 | Extension UI | 🟡 |
 | Code Extraction | ✅ |
@@ -122,49 +145,75 @@ AI-Code-Mentor
 | AI Features | ✅ |
 | Project Audit | ⏳ |
 | Refactoring | ⏳ |
-| UI/UX Upgrade | ⏳ |
-| Advanced Features | ⏳ |
+| UI/UX | ⏳ |
 | Deployment | ⏳ |
-| Portfolio | ⏳ |
 
-Overall Progress
+### Overall Progress
 
-**85% Complete**
+████████▌░░ **85%**
 
 ---
 
-# ✨ AI Features
+# ⚡ AI Features
 
 | Feature | Status |
-|----------|--------|
+|-----------|---------|
 | Explain Code | ✅ |
-| Bug Detection | ✅ |
-| Code Optimization | ✅ |
+| Find Bugs | ✅ |
+| Optimize Code | ✅ |
 | Generate Comments | ✅ |
 | Translate Code | ✅ |
 | Complexity Analysis | ✅ |
-| Unit Test Generation | ✅ |
+| Platform Detection | ✅ |
+| Language Detection | ✅ |
 
 ---
 
-# 🔥 How It Works
+# 🔄 Workflow
 
-1. User selects code on a supported website.
-2. Chrome Extension captures:
-   - Selected Code
-   - Page Title
-   - URL
-   - Page Context
-   - Programming Language
-   - Platform
-3. Data is sent to the FastAPI backend.
-4. Backend builds an AI prompt.
-5. Gemini generates a structured JSON response.
-6. Extension displays the analysis.
+```
+User selects code
+
+        │
+
+        ▼
+
+Chrome Extension
+
+        │
+
+        ▼
+
+FastAPI Backend
+
+        │
+
+        ▼
+
+Prompt Engine
+
+        │
+
+        ▼
+
+Gemini AI
+
+        │
+
+        ▼
+
+JSON Response
+
+        │
+
+        ▼
+
+Beautiful Analysis UI
+```
 
 ---
 
-# 🛠 Installation
+# ⚙ Installation
 
 ## Clone Repository
 
@@ -191,47 +240,38 @@ uvicorn app.main:app --reload
 ## Chrome Extension
 
 1. Open Chrome
-2. Go to `chrome://extensions`
+
+2. Go to
+
+```
+chrome://extensions
+```
+
 3. Enable Developer Mode
-4. Click **Load Unpacked**
-5. Select the `extension` folder
+
+4. Click
+
+```
+Load Unpacked
+```
+
+5. Select
+
+```
+extension/
+```
 
 ---
 
-# 📸 Screenshots
+# 📅 Upcoming
 
-> Add screenshots here.
-
-- Popup UI
-- AI Analysis
-- GitHub Analysis
-- LeetCode Analysis
-
----
-
-# 🚧 Upcoming Features
-
-- Analysis History
+- Better UI
+- Dark / Light Theme
 - Export PDF
 - Export Markdown
-- Export JSON
-- Light & Dark Theme
-- Chrome Web Store Release
+- Analysis History
 - Settings Page
-- AI Model Selector
-
----
-
-# 📈 Roadmap
-
-- ✅ Chrome Extension
-- ✅ FastAPI Backend
-- ✅ Gemini AI Integration
-- ✅ Seven AI Features
-- 🔄 Project Audit
-- 🔄 UI/UX Improvement
-- 🔄 Deployment
-- 🔄 Chrome Web Store
+- Chrome Web Store Deployment
 
 ---
 
@@ -239,11 +279,12 @@ uvicorn app.main:app --reload
 
 **Hemant Sharma**
 
-GitHub:
+GitHub
+
 https://github.com/Hemant-Sharma-22
 
 ---
 
-# ⭐ Support
+# ⭐ Star this Repository
 
-If you found this project helpful, consider giving it a ⭐ on GitHub.
+If you like this project, consider giving it a ⭐ on GitHub.
