@@ -42,6 +42,26 @@ def generate(prompt):
             "error": str(e)
         }
 
+def generate_from_prompt_builder(
+    prompt_builder,
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
+
+    prompt = prompt_builder(
+        code=code,
+        language=language,
+        title=title,
+        url=url,
+        page_context=page_context,
+        platform=platform
+    )
+
+    return generate(prompt)
 
 def explain_code(
     code,
@@ -52,16 +72,26 @@ def explain_code(
     platform=""
 ):
 
-    prompt = build_prompt(
-        platform=platform,
-        code=code,
-        language=language,
-        title=title,
-        url=url,
-        page_context=page_context
+    return generate_from_prompt_builder(
+
+        build_prompt,
+
+        code,
+
+        language,
+
+        title,
+
+        url,
+
+        page_context,
+
+        platform
+
     )
 
-    return generate(prompt)
+
+
 
 def detect_bugs(
     code,
@@ -72,16 +102,25 @@ def detect_bugs(
     platform=""
 ):
 
-    prompt = build_bug_prompt(
-        code=code,
-        language=language,
-        title=title,
-        url=url,
-        page_context=page_context,
-        platform=platform
+    return generate_from_prompt_builder(
+
+        build_bug_prompt,
+
+        code,
+
+        language,
+
+        title,
+
+        url,
+
+        page_context,
+
+        platform
+
     )
 
-    return generate(prompt)
+
 
 def optimize_code(
     code,
@@ -92,16 +131,25 @@ def optimize_code(
     platform=""
 ):
 
-    prompt = build_optimize_prompt(
-        code=code,
-        language=language,
-        title=title,
-        url=url,
-        page_context=page_context,
-        platform=platform
+    return generate_from_prompt_builder(
+
+        build_optimize_prompt,
+
+        code,
+
+        language,
+
+        title,
+
+        url,
+
+        page_context,
+
+        platform
+
     )
 
-    return generate(prompt)
+
 
 def generate_comments(
     code,
@@ -112,16 +160,25 @@ def generate_comments(
     platform=""
 ):
 
-    prompt = build_comments_prompt(
-        code=code,
-        language=language,
-        title=title,
-        url=url,
-        page_context=page_context,
-        platform=platform
+    return generate_from_prompt_builder(
+
+        build_comments_prompt,
+
+        code,
+
+        language,
+
+        title,
+
+        url,
+
+        page_context,
+
+        platform
+
     )
 
-    return generate(prompt)
+
 
 def translate_code(
     code,
@@ -132,16 +189,24 @@ def translate_code(
     platform=""
 ):
 
-    prompt = build_translate_prompt(
-        code=code,
-        language=language,
-        title=title,
-        url=url,
-        page_context=page_context,
-        platform=platform
+    return generate_from_prompt_builder(
+
+        build_translate_prompt,
+
+        code,
+
+        language,
+
+        title,
+
+        url,
+
+        page_context,
+
+        platform
+
     )
 
-    return generate(prompt)
 
 def analyze_complexity(
     code,
@@ -152,16 +217,24 @@ def analyze_complexity(
     platform=""
 ):
 
-    prompt = build_complexity_prompt(
-        code=code,
-        language=language,
-        title=title,
-        url=url,
-        page_context=page_context,
-        platform=platform
+    return generate_from_prompt_builder(
+
+        build_complexity_prompt,
+
+        code,
+
+        language,
+
+        title,
+
+        url,
+
+        page_context,
+
+        platform
+
     )
 
-    return generate(prompt)
 
 def generate_tests(
     code,
@@ -172,13 +245,21 @@ def generate_tests(
     platform=""
 ):
 
-    prompt = build_tests_prompt(
-        code=code,
-        language=language,
-        title=title,
-        url=url,
-        page_context=page_context,
-        platform=platform
+    return generate_from_prompt_builder(
+
+        build_tests_prompt,
+
+        code,
+
+        language,
+
+        title,
+
+        url,
+
+        page_context,
+
+        platform
+
     )
 
-    return generate(prompt)
