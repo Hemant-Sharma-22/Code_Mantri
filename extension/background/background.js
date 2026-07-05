@@ -1,20 +1,46 @@
+const API_BASE_URL =
+    "http://127.0.0.1:8000";
+
+const LANGUAGE_MAP = {
+    ".java": "java",
+    ".py": "python",
+    ".cpp": "cpp",
+    ".c": "c",
+    ".js": "javascript",
+    ".ts": "typescript",
+    ".cs": "csharp",
+    ".go": "go",
+    ".php": "php",
+    ".rb": "ruby",
+    ".kt": "kotlin"
+};
+
+const ENDPOINT_MAP = {
+    analyze: "analyze",
+    bugs: "bugs",
+    optimize: "optimize",
+    comments: "comments",
+    translate: "translate",
+    complexity: "complexity",
+    tests: "tests"
+};
+
 function detectLanguage(url, title) {
 
     const text = (url + " " + title).toLowerCase();
 
-    if (text.includes(".java")) return "java";
-    if (text.includes(".py")) return "python";
-    if (text.includes(".cpp")) return "cpp";
-    if (text.includes(".c")) return "c";
-    if (text.includes(".js")) return "javascript";
-    if (text.includes(".ts")) return "typescript";
-    if (text.includes(".cs")) return "csharp";
-    if (text.includes(".go")) return "go";
-    if (text.includes(".php")) return "php";
-    if (text.includes(".rb")) return "ruby";
-    if (text.includes(".kt")) return "kotlin";
+    for (const extension in LANGUAGE_MAP) {
+
+    if (text.includes(extension)) {
+
+        return LANGUAGE_MAP[extension];
+
+    }
+
+}
 
     return "text";
+
 }
 
 function detectPlatform(url) {
@@ -40,7 +66,7 @@ async function callBackend(endpoint, payload) {
 
     const response = await fetch(
 
-        `http://127.0.0.1:8000/${endpoint}`,
+        `${API_BASE_URL}/${endpoint}`,
 
         {
 
@@ -131,41 +157,9 @@ if (
 
 };
 
-let endpoint = "analyze";
 
-if (message.action === "bugs") {
 
-    endpoint = "bugs";
-
-}
-
-else if (message.action === "optimize") {
-
-    endpoint = "optimize";
-
-}
-
-else if (message.action === "comments") {
-
-    endpoint = "comments";
-
-}
-
-else if (message.action === "translate") {
-
-    endpoint = "translate";
-
-}
-else if (message.action === "complexity") {
-
-    endpoint = "complexity";
-
-}
-else if (message.action === "tests") {
-
-    endpoint = "tests";
-
-}
+const endpoint = ENDPOINT_MAP[message.action];
 
 const aiResult = await callBackend(
 

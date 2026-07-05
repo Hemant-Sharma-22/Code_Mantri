@@ -16,93 +16,96 @@
 
     <main>
 
-    <p id="welcome-text">
-        Welcome to AI Code Mentor
+<div class="hero">
+
+    <h2>
+        AI Powered Coding Assistant
+    </h2>
+
+    <p>
+        Analyze • Optimize • Learn
     </p>
 
-    <p id="description">
-        Analyze code from the current webpage.
-    </p>
+</div>
 
  <div class="action-buttons">
 
     <button id="explain-btn">
-        📖 Explain Code
+        📖 Explain
     </button>
 
     <button id="bugs-btn">
-        🐞 Find Bugs
+        🐞 Bugs
     </button>
 
     <button id="optimize-btn">
-        ⚡ Optimize Code
+        ⚡ Optimize
     </button>
 
     <button id="comments-btn">
-        💬 Generate Comments
+        💬 Comments
     </button>
 
     <button id="translate-btn">
-        🔄 Translate Code
+        🔄 Translate
     </button>
 
     <button id="complexity-btn">
-    📊 Complexity Analysis
+        📊 Complexity
     </button>
 
-    <button id="tests-btn">
-    🧪 Generate Unit Tests
+    <button id="tests-btn" class="full-width">
+        🧪 Unit Tests
     </button>
 
 </div>
 
-    <div id="status-message" class="hidden"></div>
+<div id="status-message" class="hidden"></div>
 
-    <hr>
+<div class="section-card">
 
-    <h3>Current Page</h3>
+    <h3>📄 Current Page</h3>
 
-    <p>
-        <strong>Title:</strong>
-    </p>
+    <p class="label">Title</p>
 
     <p id="page-title">
         Loading...
     </p>
 
-    <p>
-        <strong>URL:</strong>
-    </p>
+    <p class="label">URL</p>
 
     <p id="page-url">
         Loading...
     </p>
-    <hr>
+</div>
 
-    <h3>Selected Code</h3>
+<div class="section-card">
+
+    <h3>💻 Selected Code</h3>
 
     <pre id="selected-code">
-     Nothing selected.
+    Nothing selected.
     </pre>
 
-    <hr>
+</div>
 
-<h3>Analysis</h3>
+<div class="section-card">
 
-<pre id="analysis-result">
-Waiting...
-</pre>
+    <h3>🤖 AI Result</h3>
+
+    <div id="analysis-result" class="result-card">
+    Waiting...
+</div>
+
+</div>
+
 
 </main>
 
-    <footer>
-        <p>Version 1.0.0</p>
-    </footer>
-
-    <!-- <script src="popup.js"></script> -->
-
-</body>
+<footer>
+    <p>Version 1.0.0</p>
+</footer>
 
 <script src="popup.js"></script>
-
+</body>
 </html>
