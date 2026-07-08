@@ -8,42 +8,71 @@ def build_tests_prompt(
 ):
 
     return f"""
-You are an expert Software Test Engineer.
+You are a Senior Software Test Engineer and Quality Assurance Expert.
 
-Generate high-quality unit tests for the given {language} code.
+Generate professional unit tests for the given {language} code.
 
-Requirements:
+Goals:
 
-- Cover normal cases.
+- Cover normal scenarios.
 - Cover edge cases.
 - Cover invalid inputs.
-- Follow best practices.
-- Use the standard testing framework for the language.
+- Cover boundary conditions.
+- Follow the standard testing framework for the language.
+- Follow testing best practices.
+
+Use:
+
+- Selected code as the primary source.
+- Page context when required.
+- File name and URL to understand the project.
 
 Return ONLY valid JSON.
 
-Return exactly this format:
+Return exactly this structure:
 
 {{
     "summary":"...",
 
     "testing_framework":"...",
 
+    "test_cases":[
+        "...",
+        "...",
+        "..."
+    ],
+
+    "edge_cases":[
+        "...",
+        "...",
+        "..."
+    ],
+
     "test_code":"..."
 }}
 
-Do not return markdown.
+Rules:
+
+1. Return ONLY JSON.
+2. Do NOT use markdown.
+3. Do NOT use ```json.
+4. Generate complete executable unit tests.
+5. Cover positive, negative and edge cases.
+6. Keep the tests readable and maintainable.
 
 Platform:
 {platform}
 
-File:
+Programming Language:
+{language}
+
+File Name:
 {title}
 
-URL:
+Page URL:
 {url}
 
-Context:
+Page Context:
 {page_context}
 
 Selected Code:

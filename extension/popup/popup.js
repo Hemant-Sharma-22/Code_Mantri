@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const explainButton =
     document.getElementById("explain-btn");
 
+    const copyButton =
+    document.getElementById("copy-btn");
+
+
     const optimizeButton =
     document.getElementById("optimize-btn");
 
@@ -20,6 +24,82 @@ optimizeButton.addEventListener("click", () => {
 
 });
 
+copyButton.addEventListener("click", async () => {
+
+    const text =
+        analysisResult.innerText;
+
+    if (!text.trim()) {
+
+        showStatus(
+            "Nothing to copy.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+    await navigator.clipboard.writeText(text);
+
+    showStatus(
+        "Copied successfully.",
+        "success"
+    );
+
+});
+
+const downloadButton =
+document.getElementById("download-btn");
+
+downloadButton.addEventListener("click", () => {
+
+    const text =
+        analysisResult.innerText;
+
+    if (!text.trim()) {
+
+        showStatus(
+            "Nothing to download.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+    const blob = new Blob(
+
+        [text],
+
+        {
+
+            type: "text/plain"
+
+        }
+
+    );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    a.download = "ai-analysis.txt";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+    showStatus(
+        "Download completed.",
+        "success"
+    );
+
+});
 
 const commentsButton =
 document.getElementById("comments-btn");
@@ -114,6 +194,163 @@ function setLoading(isLoading) {
 
 }
 
+function getItemTitle(section, index) {
+
+    const titles = {
+
+        bugs: "🐞 Bug",
+
+        optimizations: "🚀 Optimization",
+
+        test_cases: "🧪 Test Case",
+
+        edge_cases: "⚠️ Edge Case",
+
+        highlights: "💡 Highlight",
+
+        bottlenecks: "🚧 Bottleneck",
+
+        optimization_tips: "✨ Tip",
+
+        best_practices: "📘 Best Practice",
+
+        translation_notes: "🔄 Note"
+
+    };
+
+    return `${titles[section] || "📄 Item"} ${index + 1}`;
+
+}
+
+function renderJSONAnalysis(response) {
+
+    pageTitle.textContent = response.title;
+    pageURL.textContent = response.url;
+
+    if (!response.selectedText) {
+
+        selectedCode.textContent = "No text selected.";
+
+        showStatus(
+            "Please select some code first.",
+            "warning"
+        );
+
+        return;
+    }
+
+    selectedCode.textContent = response.selectedText;
+
+    if (response.analysis.error) {
+
+        analysisResult.textContent =
+            response.analysis.error;
+
+        return;
+    }
+
+    let html = "";
+
+    for (const key in response.analysis) {
+
+        const value = response.analysis[key];
+
+        html += `
+            <h3>${formatHeading(key)}</h3>
+        `;
+
+        if (Array.isArray(value)) {
+
+    value.forEach((item, index) => {
+
+        if (typeof item === "object") {
+
+            html += `
+                <div class="result-item">
+                    <h4>${getItemTitle(key, index)}</h4>
+            `;
+
+            for (const property in item) {
+
+                html += `
+                    <p>
+                        <strong>${formatHeading(property)}:</strong>
+                        ${item[property]}
+                    </p>
+                `;
+
+            }
+
+            html += `</div>`;
+
+        }
+        else {
+
+            html += `<li>${item}</li>`;
+
+        }
+
+    });
+
+}
+
+        else {
+
+            const codeFields = [
+
+    "optimized_code",
+
+    "translated_code",
+
+    "commented_code",
+
+    "corrected_code",
+
+    "test_code"
+
+];
+
+if (codeFields.includes(key)) {
+
+    html += `
+        <pre class="code-block">
+<code>${escapeHTML(value)}</code>
+        </pre>
+    `;
+
+}
+
+else {
+
+    html += `<p>${value}</p>`;
+
+}
+
+        }
+
+    }
+
+    analysisResult.innerHTML = html;
+
+}
+
+function formatHeading(text) {
+
+    return text
+        .replaceAll("_", " ")
+        .replace(/\b\w/g, c => c.toUpperCase());
+
+}
+
+function escapeHTML(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+}
+
 function runAIAction(action, successMessage) {
     
     setLoading(true);
@@ -152,8 +389,7 @@ function runAIAction(action, successMessage) {
             pageURL.textContent = response.url;
             selectedCode.textContent = response.selectedText;
 
-            analysisResult.textContent =
-                JSON.stringify(response.analysis, null, 2);
+            renderJSONAnalysis(response);
 
             setLoading(false);
 

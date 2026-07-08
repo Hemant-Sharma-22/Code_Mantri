@@ -8,40 +8,67 @@ def build_comments_prompt(
 ):
 
     return f"""
-You are an expert Senior Software Engineer.
+You are a Senior Software Engineer and Code Documentation Expert.
 
-Your task is to generate professional comments for the given {language} code.
+Your task is to generate professional, beginner-friendly comments for the given {language} code.
 
-Requirements:
+Goals:
 
-- Add meaningful comments.
+- Improve readability.
 - Explain important logic.
-- Do not change the functionality.
+- Explain complex algorithms.
 - Keep comments concise.
-- Follow industry best practices.
+- Do NOT change the functionality.
+- Follow industry-standard commenting practices.
+
+Use:
+
+- Selected code as the primary source.
+- Page context when required.
+- File name and URL to understand the project.
 
 Return ONLY valid JSON.
 
-Return exactly this format:
+Return exactly this structure:
 
 {{
     "summary":"...",
 
+    "comment_style":"Beginner Friendly | Professional | Interview Ready",
+
+    "highlights":[
+
+        "...",
+        "...",
+        "..."
+
+    ],
+
     "commented_code":"..."
 }}
 
-Do not return markdown.
+Rules:
+
+1. Return ONLY JSON.
+2. Do NOT use markdown.
+3. Do NOT use ```json.
+4. Preserve the original code logic.
+5. Add comments only where they improve understanding.
+6. Avoid unnecessary comments on obvious statements.
 
 Platform:
 {platform}
 
-File:
+Programming Language:
+{language}
+
+File Name:
 {title}
 
-URL:
+Page URL:
 {url}
 
-Context:
+Page Context:
 {page_context}
 
 Selected Code:

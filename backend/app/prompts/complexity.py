@@ -8,9 +8,23 @@ def build_complexity_prompt(
 ):
 
     return f"""
-You are an expert Software Engineer.
+You are a Senior Software Engineer and Algorithm Expert.
 
-Analyze ONLY the algorithmic complexity of this {language} code.
+Analyze ONLY the algorithmic complexity of the given {language} code.
+
+Focus on:
+
+- Time Complexity
+- Space Complexity
+- The reason behind each complexity
+- Performance bottlenecks
+- Possible optimizations
+
+Use:
+
+- Selected code as the primary source.
+- Page context when required.
+- File name and URL to understand the project.
 
 Return ONLY valid JSON.
 
@@ -23,21 +37,43 @@ Return exactly this structure:
 
     "space_complexity":"...",
 
-    "explanation":"..."
+    "explanation":"...",
+
+    "bottlenecks":[
+        "...",
+        "...",
+        "..."
+    ],
+
+    "optimization_tips":[
+        "...",
+        "...",
+        "..."
+    ]
 }}
 
-Do not return markdown.
+Rules:
+
+1. Return ONLY JSON.
+2. Do NOT use markdown.
+3. Do NOT use ```json.
+4. Analyze the dominant algorithm only.
+5. Explain complexities in simple language.
+6. Mention practical optimization opportunities if applicable.
 
 Platform:
 {platform}
 
-File:
+Programming Language:
+{language}
+
+File Name:
 {title}
 
-URL:
+Page URL:
 {url}
 
-Context:
+Page Context:
 {page_context}
 
 Selected Code:

@@ -8,19 +8,26 @@ def build_bug_prompt(
 ):
 
     return f"""
-You are an expert Senior Software Engineer and Code Reviewer.
+You are a Senior Software Engineer, Security Reviewer, and Code Quality Expert.
 
-Platform:
-{platform}
+Analyze the selected {language} code and identify any potential issues.
 
-Programming Language:
-{language}
+Consider:
 
-Your task is to find bugs in the selected code.
+- Logical Bugs
+- Runtime Errors
+- Null Pointer / Null Reference Issues
+- Memory Problems
+- Concurrency Issues
+- Security Vulnerabilities
+- Performance Problems
+- Edge Cases
+- Best Practice Violations
 
 Use:
+
 - Selected code as the primary source.
-- Page context if required.
+- Page context when required.
 - File name and URL to understand the project.
 
 Return ONLY valid JSON.
@@ -28,31 +35,55 @@ Return ONLY valid JSON.
 Return exactly this structure:
 
 {{
-    "bugs": [
+    "summary":"...",
+
+    "bugs":[
+
         {{
-            "title": "...",
-            "severity": "...",
-            "description": "...",
-            "fix": "..."
+            "title":"...",
+
+            "severity":"Low | Medium | High | Critical",
+
+            "description":"...",
+
+            "reason":"...",
+
+            "impact":"...",
+
+            "fix":"..."
         }}
-    ]
+
+    ],
+
+    "corrected_code":"..."
 }}
 
 Rules:
 
-1. Return only JSON.
-2. No markdown.
-3. No explanations.
-4. If there are no bugs, return:
+1. Return ONLY JSON.
+2. Do NOT use markdown.
+3. Do NOT use ```json.
+4. Preserve the original functionality.
+5. If there are no bugs, return:
 
 {{
-    "bugs":[]
+    "summary":"No significant bugs found.",
+
+    "bugs":[],
+
+    "corrected_code":""
 }}
+
+Platform:
+{platform}
+
+Programming Language:
+{language}
 
 File Name:
 {title}
 
-URL:
+Page URL:
 {url}
 
 Page Context:

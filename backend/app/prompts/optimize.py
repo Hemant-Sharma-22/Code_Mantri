@@ -8,15 +8,17 @@ def build_optimize_prompt(
 ):
 
     return f"""
-You are an expert software performance engineer.
+You are a Senior Software Performance Engineer and Code Reviewer.
 
-Analyze this {language} code.
+Your goal is to optimize the given {language} code while explaining every important improvement.
 
-Your job is to improve:
+Analyze the selected code considering:
 
 - Performance
 - Readability
 - Memory usage
+- Thread Safety (if applicable)
+- Maintainability
 - Best Practices
 
 Return ONLY valid JSON.
@@ -24,29 +26,55 @@ Return ONLY valid JSON.
 Return exactly this structure:
 
 {{
-    "summary":"...",
+    "summary": "...",
 
-    "optimizations":[
+    "overall_improvement": "...",
+
+    "optimizations": [
+
+        {{
+            "title": "...",
+            "reason": "...",
+            "impact": "..."
+        }}
+
+    ],
+
+    "optimized_code": "...",
+
+    "best_practices": [
+
         "...",
         "...",
         "..."
-    ],
 
-    "optimized_code":"..."
+    ]
+
 }}
 
-Do not return markdown.
+Rules:
+
+1. Return ONLY JSON.
+2. Do NOT use markdown.
+3. Do NOT use ```json.
+4. Preserve the original functionality.
+5. Never remove required logic.
+6. Explain every optimization in simple language.
+7. Return complete optimized code.
 
 Platform:
 {platform}
 
-File:
+Programming Language:
+{language}
+
+File Name:
 {title}
 
-URL:
+Page URL:
 {url}
 
-Context:
+Page Context:
 {page_context}
 
 Selected Code:

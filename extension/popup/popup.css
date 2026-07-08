@@ -304,3 +304,119 @@ footer {
     cursor: not-allowed;
 
 }
+
+.result-item {
+
+    margin: 12px 0;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    background: #1e293b;
+
+    border-left: 4px solid #3b82f6;
+
+}
+
+.result-item h4 {
+
+    margin-bottom: 8px;
+
+    color: #38bdf8;
+
+}
+
+.result-item p {
+
+    margin: 6px 0;
+
+    color: #e2e8f0;
+
+}
+
+#copy-btn {
+
+    width: 100%;
+
+    margin-bottom: 12px;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #16a34a;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+#copy-btn:hover {
+
+    background: #15803d;
+
+}
+
+#download-btn {
+
+    width: 100%;
+
+    margin-bottom: 12px;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+#download-btn:hover {
+
+    background: #1d4ed8;
+
+}
+
+.code-block {
+
+    background: #0f172a;
+
+    color: #e2e8f0;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    overflow-x: auto;
+
+    white-space: pre-wrap;
+
+    margin-top: 10px;
+
+    border: 1px solid #334155;
+
+}
+
+.code-block code {
+
+    font-family: Consolas, monospace;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
