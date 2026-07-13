@@ -1,5 +1,5 @@
 const API_BASE_URL =
-    "http://127.0.0.1:8000";
+    "https://codemantri-production.up.railway.app";
 
 const LANGUAGE_MAP = {
     ".java": "java",
@@ -162,6 +162,9 @@ if (
 
 
 const endpoint = ENDPOINT_MAP[message.action];
+// console.log("Action:", message.action);
+// console.log("Endpoint:", endpoint);
+// console.log("URL:", `${API_BASE_URL}/${endpoint}`);
 
 const aiResult = await callBackend(
 
@@ -170,7 +173,8 @@ const aiResult = await callBackend(
     payload
 
 );
-console.log("AI RESULT:", aiResult);
+// console.log("AI RESULT:", aiResult);
+// console.log(JSON.stringify(aiResult, null, 2));
 
 sendResponse({
 
