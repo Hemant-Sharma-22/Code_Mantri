@@ -7,6 +7,7 @@ from app.api.translate import router as translate_router
 from app.api.complexity import router as complexity_router
 from app.api.tests import router as tests_router
 from fastapi.middleware.cors import CORSMiddleware
+from app.api.generate import router as generate_router
 
 app = FastAPI(
     title="AI Code Mentor API",
@@ -27,6 +28,7 @@ app.include_router(comments_router)
 app.include_router(translate_router)
 app.include_router(complexity_router)
 app.include_router(tests_router)
+app.include_router(generate_router)
 
 @app.get("/")
 def home():

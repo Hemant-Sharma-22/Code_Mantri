@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
     
+// let currentCode = "";
+
     console.log("AI Code Mentor Started");
     
     const explainButton =
@@ -12,8 +14,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     const optimizeButton =
     document.getElementById("optimize-btn");
 
+    const generateButton =
+    document.getElementById("generate-btn");
+
 const bugsButton =
 document.getElementById("bugs-btn");
+
+const codeModal =
+document.getElementById("code-modal");
+
+const codeModalBody =
+document.getElementById("code-modal-body");
+
+const codeModalTitle =
+document.getElementById("code-modal-title");
+
+const closeCodeModal =
+document.getElementById("close-code-modal");
+
+const copyCodeButton =
+document.getElementById("copy-code-btn");
 
 optimizeButton.addEventListener("click", () => {
 
@@ -45,6 +65,60 @@ copyButton.addEventListener("click", async () => {
     showStatus(
         "Copied successfully.",
         "success"
+    );
+
+});
+
+function openCodeModal(title, code) {
+
+    codeModalTitle.textContent = title;
+
+    codeModalBody.textContent = code;
+
+    codeModal.classList.remove("hidden");
+
+}
+
+function closeModal() {
+
+    codeModal.classList.add("hidden");
+
+}
+
+closeCodeModal.addEventListener("click", () => {
+
+    closeModal();
+
+});
+
+copyCodeButton.addEventListener("click", async () => {
+
+    await navigator.clipboard.writeText(
+
+        codeModalBody.textContent
+
+    );
+
+    copyCodeButton.textContent =
+        "✅ Copied";
+
+    setTimeout(() => {
+
+        copyCodeButton.textContent =
+            "📋 Copy Code";
+
+    }, 2000);
+
+});
+
+generateButton.addEventListener("click", () => {
+
+    runAIAction(
+
+        "generate",
+
+        "Code generated successfully."
+
     );
 
 });
@@ -272,14 +346,57 @@ function renderJSONAnalysis(response) {
 
             for (const property in item) {
 
-                html += `
-                    <p>
-                        <strong>${formatHeading(property)}:</strong>
-                        ${item[property]}
-                    </p>
-                `;
+    if (property === "code") {
 
-            }
+    html += `
+
+        <div class="view-code-card">
+
+            <button
+                class="view-code-btn"
+                data-code="${escapeHTML(item[property])}">
+
+                👀 View Code
+
+            </button>
+
+        </div>
+
+    `;
+
+    continue;
+
+}
+
+    if (Array.isArray(item[property])) {
+
+    html += `<ul>`;
+
+    item[property].forEach(step => {
+
+        html += `<li>${step}</li>`;
+
+    });
+
+    html += `</ul>`;
+
+    continue;
+
+}
+
+html += `
+
+<p>
+
+<strong>${formatHeading(property)}:</strong>
+
+${item[property]}
+
+</p>
+
+`;
+
+}
 
             html += `</div>`;
 
@@ -297,6 +414,7 @@ function renderJSONAnalysis(response) {
         else {
 
             const codeFields = [
+                "code",
 
     "optimized_code",
 
@@ -312,12 +430,25 @@ function renderJSONAnalysis(response) {
 
 if (codeFields.includes(key)) {
 
+    currentCode = value;
+
     html += `
-        <pre class="code-block">
-<code>${escapeHTML(value)}</code>
-        </pre>
+
+        <div class="view-code-card">
+
+            <p>💻 Code Available</p>
+
+            <button class="view-code-btn">
+
+                👀 View Code
+
+            </button>
+
+        </div>
+
     `;
 
+    continue;
 }
 
 else {
@@ -331,6 +462,24 @@ else {
     }
 
     analysisResult.innerHTML = html;
+
+    document
+    .querySelectorAll(".view-code-btn")
+    .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            openCodeModal(
+
+                "Generated Code",
+
+                button.dataset.code
+
+            );
+
+        });
+
+    });
 
 }
 

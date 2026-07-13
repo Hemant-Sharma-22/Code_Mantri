@@ -58,6 +58,10 @@
         🧪 Unit Tests
     </button>
 
+    <button id="generate-btn">
+    ✨ Solve Problem
+    </button>
+
 </div>
 
 <div id="status-message" class="hidden"></div>
@@ -106,9 +110,35 @@
 </div>
 
 </div>
-
-
 </main>
+
+<div id="code-modal" class="code-modal hidden">
+
+    <div class="code-modal-content">
+
+        <div class="code-modal-header">
+
+            <h3 id="code-modal-title">
+                💻 Generated Code
+            </h3>
+
+            <button id="close-code-modal">
+                ✖
+            </button>
+
+        </div>
+
+        <pre>
+            <code id="code-modal-body"></code>
+        </pre>
+
+        <button id="copy-code-btn">
+            📋 Copy Code
+        </button>
+
+    </div>
+
+</div>
 
 <footer>
     <p>Version 1.0.0</p>

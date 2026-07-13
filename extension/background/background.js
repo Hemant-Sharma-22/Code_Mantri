@@ -22,7 +22,8 @@ const ENDPOINT_MAP = {
     comments: "comments",
     translate: "translate",
     complexity: "complexity",
-    tests: "tests"
+    tests: "tests",
+    generate: "generate"
 };
 
 function detectLanguage(url, title) {
@@ -101,7 +102,8 @@ if (
     message.action !== "comments" &&
     message.action !== "translate" &&
     message.action !== "complexity" &&
-    message.action !== "tests"
+    message.action !== "tests" &&
+    message.action !== "generate"
 ) {
     return;
 }

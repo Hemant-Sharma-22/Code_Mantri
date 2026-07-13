@@ -10,6 +10,7 @@ from app.prompts.bugs import build_bug_prompt
 from app.prompts.optimize import build_optimize_prompt
 from app.prompts.router import build_prompt
 from app.prompts.tests import build_tests_prompt
+from app.prompts.generate import build_generate_prompt
 
 load_dotenv()
 
@@ -261,5 +262,31 @@ def generate_tests(
 
         platform
 
+    )
+
+def generate_code(
+    code,
+    language,
+    title="",
+    url="",
+    page_context="",
+    platform=""
+):
+
+    return generate_from_prompt_builder(
+
+        build_generate_prompt,
+
+        code,
+
+        language,
+
+        title,
+
+        url,
+
+        page_context,
+
+        platform
     )
 
