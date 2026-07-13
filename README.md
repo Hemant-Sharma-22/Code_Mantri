@@ -1,88 +1,103 @@
 # 🤖 AI Code Mentor
 
-> An AI-powered Chrome Extension that analyzes code directly from websites like GitHub, LeetCode, CodeChef, and more using Google's Gemini AI.
+> An AI-powered Chrome Extension that helps developers understand, improve, and solve code directly from websites like GitHub, LeetCode, GeeksforGeeks, and CodeChef.
 
 ![Version](https://img.shields.io/badge/version-1.0-blue)
 ![Python](https://img.shields.io/badge/Python-FastAPI-green)
-![JavaScript](https://img.shields.io/badge/JavaScript-Chrome%20Extension-yellow)
-![Gemini](https://img.shields.io/badge/AI-Gemini-red)
+![JavaScript](https://img.shields.io/badge/Chrome%20Extension-JavaScript-yellow)
+![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-orange)
+![Deployment](https://img.shields.io/badge/Backend-Railway-purple)
 
 ---
 
 ## 🚀 Features
 
-- 🧠 Explain Code
-- 🐞 Find Bugs
-- ⚡ Optimize Code
-- 💬 Generate Comments
-- 🌍 Translate Code
-- 📊 Time Complexity Analysis
-- 💾 Space Complexity Analysis
-- 🔍 Platform Detection
-- 💻 Language Detection
-- 📄 Page Context Analysis
+### 📖 Explain Code
+- AI-generated code explanation
+- Time & Space Complexity
+- Improvement suggestions
+
+### 🐞 Find Bugs
+- Detect logical bugs
+- Severity analysis
+- Suggested fixes
+
+### ⚡ Optimize Code
+- Performance improvements
+- Memory optimization
+- Best practices
+- View optimized code separately
+
+### 💬 Generate Comments
+- Professional inline comments
+- Improves code readability
+
+### 🔄 Translate Code
+- Convert code between programming languages
+- Maintain original logic
+
+### 📊 Complexity Analysis
+- Time Complexity
+- Space Complexity
+- Algorithm explanation
+
+### 🧪 Generate Unit Tests
+- AI-generated test cases
+- Edge cases
+- Standard testing framework
+
+### 💡 Solve Problem
+Generates:
+
+- Brute Force Solution
+- Better Solution
+- Optimal Solution
+
+For every solution it provides:
+
+- Explanation
+- Algorithm
+- Time Complexity
+- Space Complexity
+- Interview Tips
+- Code Viewer
+
+### 💻 Code Viewer
+- Dedicated popup for generated code
+- Copy code instantly
+- Clean UI for better readability
 
 ---
 
-# 🏗 Architecture
-
-```
-Chrome Extension
-        │
-        ▼
-Content Script
-        │
-        ▼
-Background Script
-        │
-        ▼
-FastAPI Backend
-        │
-        ▼
-Prompt Engine
-        │
-        ▼
-Gemini API
-        │
-        ▼
-Structured JSON
-        │
-        ▼
-Popup UI
-```
-
----
-
-# 🛠 Tech Stack
+# 🛠️ Tech Stack
 
 ## Frontend
-
-- HTML
-- CSS
 - JavaScript
-- Chrome Extension (Manifest V3)
+- HTML5
+- CSS3
+- Chrome Extension API
 
 ## Backend
-
 - Python
 - FastAPI
 - Google Gemini API
 
+## Deployment
+- Railway
+
 ---
 
-# 📂 Folder Structure
+# 📂 Project Structure
 
 ```
 AI-Code-Mentor
 │
 ├── backend
 │   ├── app
-│   │   ├── ai
 │   │   ├── api
+│   │   ├── ai
 │   │   ├── prompts
 │   │   ├── schemas
-│   │   ├── services
-│   │   ├── utils
 │   │   └── main.py
 │   │
 │   ├── requirements.txt
@@ -90,172 +105,105 @@ AI-Code-Mentor
 │
 ├── extension
 │   ├── popup
-│   ├── background
-│   ├── content
-│   ├── assets
-│   ├── styles
-│   └── manifest.json
+│   ├── background.js
+│   ├── content.js
+│   ├── manifest.json
+│   └── assets
+│
+├── screenshots
 │
 └── README.md
 ```
 
 ---
 
-# 📸 Screenshots
+# ⚙️ Installation
 
-## 🖥 Extension Interface
-
-![Extension UI](screenshots/extension-home.png)
-
----
-
-## 📄 Code Selection
-
-![Code Selection](screenshots/code-selection.png)
-
----
-
-## ⚙ Backend API
-
-![Swagger](screenshots/swagger-api.png)
-
----
-
-## 🚀 Backend Running
-
-![Backend](screenshots/backend-running.png)
-
----
-
-## 🤖 AI JSON Response
-
-![AI Response](screenshots/ai-response.png)
-
----
-
-# 🚀 Current Progress
-
-| Phase | Status |
-|---------|---------|
-| Project Foundation | ✅ |
-| Extension UI | 🟡 |
-| Code Extraction | ✅ |
-| Backend | ✅ |
-| Gemini Integration | ✅ |
-| AI Features | ✅ |
-| Project Audit | ⏳ |
-| Refactoring | ⏳ |
-| UI/UX | ⏳ |
-| Deployment | ⏳ |
-
-### Overall Progress
-
-████████▌░░ **85%**
-
----
-
-# ⚡ AI Features
-
-| Feature | Status |
-|-----------|---------|
-| Explain Code | ✅ |
-| Find Bugs | ✅ |
-| Optimize Code | ✅ |
-| Generate Comments | ✅ |
-| Translate Code | ✅ |
-| Complexity Analysis | ✅ |
-| Platform Detection | ✅ |
-| Language Detection | ✅ |
-
----
-
-# 🔄 Workflow
-
-```
-User selects code
-
-        │
-
-        ▼
-
-Chrome Extension
-
-        │
-
-        ▼
-
-FastAPI Backend
-
-        │
-
-        ▼
-
-Prompt Engine
-
-        │
-
-        ▼
-
-Gemini AI
-
-        │
-
-        ▼
-
-JSON Response
-
-        │
-
-        ▼
-
-Beautiful Analysis UI
-```
-
----
-
-# ⚙ Installation
-
-## Clone Repository
+## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/Hemant-Sharma-22/Code_Mantri.git
+git clone https://github.com/YOUR_USERNAME/AI-Code-Mentor.git
+
+cd AI-Code-Mentor
 ```
 
-## Backend
+---
+
+## 2️⃣ Backend Setup
 
 ```bash
 cd backend
 
 python -m venv venv
+```
 
+Activate Virtual Environment
+
+### Windows
+
+```bash
 venv\Scripts\activate
+```
 
+### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
+Create `.env`
+
+```env
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+```
+
+Run server
+
+```bash
 uvicorn app.main:app --reload
+```
+
+Server runs on
+
+```
+http://127.0.0.1:8000
+```
+
+Swagger
+
+```
+http://127.0.0.1:8000/docs
 ```
 
 ---
 
-## Chrome Extension
+## 3️⃣ Chrome Extension
 
-1. Open Chrome
-
-2. Go to
+Open
 
 ```
 chrome://extensions
 ```
 
-3. Enable Developer Mode
+Enable
 
-4. Click
+```
+Developer Mode
+```
+
+Click
 
 ```
 Load Unpacked
 ```
 
-5. Select
+Select
 
 ```
 extension/
@@ -263,15 +211,79 @@ extension/
 
 ---
 
-# 📅 Upcoming
+# 🌍 Live Backend
 
-- Better UI
+**Railway Deployment**
+
+```
+https://codemantri-production.up.railway.app
+```
+
+Swagger Documentation
+
+```
+https://codemantri-production.up.railway.app/docs
+```
+
+---
+
+# 📸 Screenshots
+
+_Add screenshots inside the `screenshots/` folder._
+
+Example:
+
+- Home Popup
+- Explain Feature
+- Optimize Feature
+- Solve Problem
+- Code Viewer
+- Railway Deployment
+
+---
+
+# 🎯 Future Improvements
+
+- Dry Run Visualization
+- Syntax Highlighting
+- Download Code
+- Multiple AI Models
+- Code History
+- Authentication
 - Dark / Light Theme
-- Export PDF
-- Export Markdown
-- Analysis History
-- Settings Page
-- Chrome Web Store Deployment
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature-name
+```
+
+3. Commit changes
+
+```bash
+git commit -m "Added feature"
+```
+
+4. Push
+
+```bash
+git push origin feature-name
+```
+
+5. Create a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
 
 ---
 
@@ -279,12 +291,12 @@ extension/
 
 **Hemant Sharma**
 
-GitHub
-
+GitHub:
 https://github.com/Hemant-Sharma-22
+
+LinkedIn:
+https://www.linkedin.com/in/YOUR-LINKEDIN
 
 ---
 
-# ⭐ Star this Repository
-
-If you like this project, consider giving it a ⭐ on GitHub.
+⭐ If you like this project, don't forget to Star the repository!
