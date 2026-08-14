@@ -45,12 +45,10 @@ def home():
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #090d16;
-            --card-bg: rgba(18, 24, 38, 0.75);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --primary-glow: #6366f1;
-            --accent-glow: #a855f7;
-            --cyan-glow: #06b6d4;
+            --bg-dark: #0f1115;
+            --card-bg: #16181d;
+            --border-color: #262930;
+            --border-hover: #3b3e47;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
         }
@@ -62,7 +60,7 @@ def home():
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
             min-height: 100vh;
@@ -71,9 +69,7 @@ def home():
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.18) 0%, transparent 45%);
+            background-image: radial-gradient(circle at 50% 0%, #1a1d24 0%, transparent 60%);
         }
 
         .container {
@@ -87,12 +83,12 @@ def home():
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #34d399;
+            background: #16181d;
+            border: 1px solid var(--border-color);
+            color: #d1d5db;
             padding: 6px 16px;
             border-radius: 9999px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             margin-bottom: 24px;
         }
@@ -100,29 +96,21 @@ def home():
         .badge-dot {
             width: 8px;
             height: 8px;
-            background-color: #34d399;
+            background-color: #22c55e;
             border-radius: 50%;
-            box-shadow: 0 0 10px #34d399;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #c084fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
             margin-bottom: 16px;
         }
 
         p.subtitle {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
             max-width: 650px;
             margin: 0 auto 32px;
@@ -141,75 +129,74 @@ def home():
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 1rem;
+            padding: 12px 26px;
+            border-radius: 10px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            color: #ffffff;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-            border: none;
+            background: #e5e7eb;
+            color: #0f1115;
+            border: 1px solid #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .btn-primary:hover {
+            background: #ffffff;
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.5);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-main);
+            background: #16181d;
+            color: #e5e7eb;
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: #1f2229;
+            border-color: var(--border-hover);
             transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.25);
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            gap: 18px;
             text-align: left;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 24px;
-            backdrop-filter: blur(12px);
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
         }
 
         .card-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 12px;
         }
 
         .card h3 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             margin-bottom: 8px;
             color: #f3f4f6;
         }
 
         .card p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-muted);
             line-height: 1.5;
         }
@@ -221,15 +208,15 @@ def home():
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(5, 7, 13, 0.75);
-            backdrop-filter: blur(12px);
+            background: rgba(10, 11, 14, 0.82);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.25s ease;
         }
 
         .modal-overlay.active {
@@ -238,15 +225,15 @@ def home():
         }
 
         .modal-box {
-            background: #111827;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
+            background: #16181d;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             width: 90%;
-            max-width: 580px;
-            padding: 32px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
+            max-width: 560px;
+            padding: 30px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
             position: relative;
             text-align: left;
         }
@@ -263,7 +250,7 @@ def home():
         }
 
         .modal-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #fff;
             display: flex;
@@ -272,8 +259,8 @@ def home():
         }
 
         .close-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: none;
+            background: #20232a;
+            border: 1px solid var(--border-color);
             color: #9ca3af;
             width: 32px;
             height: 32px;
@@ -287,7 +274,7 @@ def home():
         }
 
         .close-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: #2a2d35;
             color: #fff;
         }
 
@@ -305,8 +292,9 @@ def home():
         }
 
         .step-num {
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: #fff;
+            background: #20232a;
+            border: 1px solid #3b3e47;
+            color: #f3f4f6;
             width: 28px;
             height: 28px;
             border-radius: 50%;
@@ -334,8 +322,9 @@ def home():
 
         code {
             font-family: 'Fira Code', monospace;
-            background: rgba(255, 255, 255, 0.08);
-            color: #a5b4fc;
+            background: #20232a;
+            border: 1px solid #2d313b;
+            color: #e5e7eb;
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 0.82rem;
@@ -345,7 +334,7 @@ def home():
             display: flex;
             gap: 12px;
             justify-content: flex-end;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid var(--border-color);
             padding-top: 20px;
         }
     </style>
@@ -441,10 +430,10 @@ def home():
             </div>
 
             <div class="modal-footer">
-                <a href="https://github.com/Hemant-Sharma-22/Code_Mantri" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                <a href="https://github.com/Hemant-Sharma-22/Code_Mantri" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.88rem;">
                     📥 Download Project
                 </a>
-                <button class="btn btn-secondary" onclick="closeModal()" style="padding: 10px 20px; font-size: 0.9rem;">
+                <button class="btn btn-secondary" onclick="closeModal()" style="padding: 10px 20px; font-size: 0.88rem;">
                     Got It!
                 </button>
             </div>
@@ -482,4 +471,5 @@ def home():
 def health():
     return {
         "status": "healthy"
-    }
+    }
+
