@@ -213,16 +213,16 @@ extension/
 
 # 🌍 Live Backend
 
-**Railway Deployment**
+**Render Deployment**
 
 ```
-https://codemantri-production.up.railway.app
+https://code-mantri.onrender.com
 ```
 
 Swagger Documentation
 
 ```
-https://codemantri-production.up.railway.app/docs
+https://code-mantri.onrender.com/docs
 ```
 
 ---
