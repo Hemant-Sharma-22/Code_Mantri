@@ -1,5 +1,5 @@
 const API_BASE_URL =
-    "https://codemantri-production.up.railway.app";
+    "https://code-mantri.onrender.com";
 
 const LANGUAGE_MAP = {
     ".java": "java",
